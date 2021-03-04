@@ -3,7 +3,7 @@
 ## Installation & Configuration
 
 ### Laravel
-1. Open Project Emergency Room
+1. Open Project jurnal
 - Setup Installation
     1. Open terminal with path the project
     2. Run `composer install`
