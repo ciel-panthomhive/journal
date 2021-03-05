@@ -60,4 +60,8 @@ Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->n
 //redaktur
 Route::get('/publish', 'App\Http\Controllers\ArtikelRedakturController@publish')->name('publish');
 Route::get('/myartikel', 'App\Http\Controllers\ArtikelRedakturController@myartikel')->name('myartikel');
-Route::get('/headline', 'App\Http\Controllers\ArtikelRedakturController@index')->name('headline');
+
+//redaktur-headline
+Route::get('/headline', 'App\Http\Controllers\HeadlineController@index')->name('headline');
+Route::get('/headline/edit/{id}', 'App\Http\Controllers\HeadlineController@edit')->name('headline.edit');
+Route::put('/headline/update/{id}', 'App\Http\Controllers\HeadlineController@update')->name('headline.update');
