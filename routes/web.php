@@ -55,3 +55,9 @@ Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user');
 Route::get('/user/add', 'App\Http\Controllers\UserController@add')->name('user.add');
 Route::post('user/new', 'App\Http\Controllers\UserController@new')->name('user.new');
 Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
+
+
+//redaktur
+Route::get('/publish', 'App\Http\Controllers\ArtikelRedakturController@publish')->name('publish');
+Route::get('/myartikel', 'App\Http\Controllers\ArtikelRedakturController@myartikel')->name('myartikel');
+Route::get('/headline', 'App\Http\Controllers\ArtikelRedakturController@index')->name('headline');

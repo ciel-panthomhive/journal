@@ -8,9 +8,9 @@
 
 @role('redaktur')
 <div class="sidenav">
-    <a href="{{ route('kategori') }}" class="btn btn-primary">Home</a>
-    <a href="{{ route('subkategori') }}" class="btn btn-primary">Publish</a></td>
-    <a href="{{ route('user') }}" class="btn btn-primary">My Artikel</a></td>
+    <a href="{{ route('home') }}" class="btn btn-primary">Home</a>
+    <a href="{{ route('publish') }}" class="btn btn-primary">Publish</a></td>
+    <a href="{{ route('myartikel') }}" class="btn btn-primary">My Artikel</a></td>
     <a href="{{ route('user') }}" class="btn btn-primary">Headline</a></td>
 </div>
 @endrole

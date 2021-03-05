@@ -32,4 +32,9 @@ class Artikel extends Model
     {
         return $this->hasMany(Artikelsubkategor::class, 'id_artikel', 'id');
     }
+
+    public function publish()
+    {
+        return $this->hasOne(Publish::class, 'id_artikel', 'id');
+    }
 }
