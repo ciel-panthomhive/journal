@@ -17,17 +17,6 @@ use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
     return view('welcome');
-
-    // auth()->user()->assignRole('writer');
-
-    // if (auth()->user()->hasRole('writer')) {
-    //     return 'Oke';
-    // }
-
-    // $role = Role::find(2);
-
-    // $role->syncPermissions('delete post', 'edit post', 'add post', 'writer post');
-    // dd($role->hasPermissionTo('edit post'));
 });
 
 Auth::routes();
@@ -60,6 +49,8 @@ Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->n
 //redaktur
 Route::get('/publish', 'App\Http\Controllers\ArtikelRedakturController@publish')->name('publish');
 Route::get('/myartikel', 'App\Http\Controllers\ArtikelRedakturController@myartikel')->name('myartikel');
+Route::get('/artikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
+Route::post('artikel/new', 'App\Http\Controllers\ArtikelRedakturController@new')->name('artikelredaktur.new');
 
 //redaktur-headline
 Route::get('/headline', 'App\Http\Controllers\HeadlineController@index')->name('headline');

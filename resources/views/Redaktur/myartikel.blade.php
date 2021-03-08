@@ -8,7 +8,7 @@
                 My Artikel
             </div>
             <div class="card-body">
-                <a href="{{ route('user.add') }}" class="btn btn-primary">Add Artikel</a>
+                <a href="{{ route('artikelredaktur.add') }}" class="btn btn-primary">Add Artikel</a>
                 <br />
                 <br />
                 <table class="table table-bordered table-hover table-striped">

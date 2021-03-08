@@ -24,13 +24,12 @@ class SubkategoriController extends Controller
     function new(Request $request)
     {
         $this->validate($request, [
-            'id_kategori' => 'required',
             'subkategories' => 'required',
         ]);
 
         $subkategori = Subkategori::create([
-            'id_kategori' => trim($request->id_kategori),
             'subkategories' => trim($request->subkategories),
+            'id_kategori' => $request->id_kategori != "" ? $request->id_kategori : null,
         ]);
 
         if ($subkategori) {
@@ -56,7 +55,6 @@ class SubkategoriController extends Controller
     {
         $this->validate($request, [
             'subkategories' => 'required',
-            'id_kategori' => 'required',
         ]);
 
         $subkategori = Subkategori::find($id);
@@ -66,7 +64,7 @@ class SubkategoriController extends Controller
         }
 
         $subkategori->subkategories = trim($request->subkategories);
-        $subkategori->id_kategori = trim($request->id_kategori);
+        $subkategori->id_kategori = $request->id_kategori != "" ? $request->id_kategori : null;
         $subkategori->save();
 
         if ($subkategori) {

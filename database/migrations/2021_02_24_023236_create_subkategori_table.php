@@ -16,9 +16,7 @@ class CreateSubkategoriTable extends Migration
         Schema::create('subkategori', function (Blueprint $table) {
             $table->id();
             $table->string('subkategories', 30);
-            $table->unsignedBigInteger('id_kategori')->nullable();
-
-            $table->foreign('id_kategori')->references('id')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('id_kategori')->nullable();
         });
     }
 

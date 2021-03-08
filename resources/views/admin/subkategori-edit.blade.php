@@ -35,10 +35,10 @@
                                     {{ $k->kategories == $subkategori->id_kategori ? 'selected' : '' }}>
                                     {{ $k->kategories }}
                                 </option>
-                                <option value="null"> </option>
                             @empty
                                 <option value=""> </option>
                             @endforelse
+                            <option value=""> </option>
                         </select>
 
                     </div>

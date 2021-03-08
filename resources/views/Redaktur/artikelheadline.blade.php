@@ -5,12 +5,9 @@
         <div class="card mt-5">
             @include('layouts.alert')
             <div class="card-header text-center">
-                My Artikel
+                Headline
             </div>
             <div class="card-body">
-                <a href="{{ route('user.add') }}" class="btn btn-primary">Add Artikel</a>
-                <br />
-                <br />
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
@@ -45,7 +42,7 @@
                                         {{ $a->headline->jenis }}
                                     @endisset</td>
                                 <td>
-                                    <a href="{{ route('headline-edit', ['id' => $a->id]) }}"
+                                    <a href="{{ route('headlineedit', ['id' => $a->id]) }}"
                                         class="btn btn-danger">Edit</a>
                                 </td>
                             </tr>

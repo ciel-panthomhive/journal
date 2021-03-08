@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label>Rubik</label>
                         <select class="form-control select2-single" name="id_kategori">
-                            <option value="null"> </option>
+                            <option value=""> </option>
                             @forelse ($kategori as $k)
                                 <option value="{{ $k->id }}">{{ $k->kategories }} </option>
                             @empty

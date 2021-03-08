@@ -15,40 +15,64 @@ class HeadlineController extends Controller
         return view('redaktur.artikelheadline', ['artikelheadline' => $artikelheadline]);
     }
 
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $headline = Headline::all();
         $artikel = Artikel::all();
         $artikelheadline = Artikelheadline::find($id);
 
-        if (empty($artikelheadline)) {
-            return redirect()->route('headline');
-        }
+        // if (empty($artikelheadline)) {
+        //     return redirect()->route('headline');
+        // }
 
-        return view('redaktur.artikel-edit', ['artikel' => $artikel, 'headline' => $headline, 'artikelheadline' => $artikelheadline]);
-    }
+        // $this->validate($request, [
+        //     'id_artikel' => 'required',
+        //     'id_headline' => 'required',
+        // ]);
 
-    public function update($id, Request $request)
-    {
-        $this->validate($request, [
-            'id_artikel' => 'required',
-            'id_headline' => 'required',
-        ]);
-
-        $artikelheadline = Artikelheadline::find($id);
+        // $artikelheadline = Artikelheadline::find($id);
 
         if (empty($artikelheadline)) {
             return redirect()->route('artikel');
+        } else {
+            if ('id_headline' == 2) {
+                $artikelheadline->id_headline = trim(1);
+            } else if ('id_headline' == 1) {
+                $artikelheadline->id_headline = trim(2);
+            }
+            $artikelheadline->save();
         }
-
-        $artikelheadline->id_artikel = trim($request->id_artikel);
-        $artikelheadline->id_headline = trim($request->id_headline);
-        $artikelheadline->save();
 
         if ($artikelheadline) {
             return redirect()->route('artikel')->with(['success' => 'Success']);
         } else {
             return redirect()->route('artikel')->with(['error' => 'Failed']);
         }
+
+        return view('redaktur.headline-edit', ['artikel' => $artikel, 'headline' => $headline, 'artikelheadline' => $artikelheadline]);
     }
+
+    // public function update($id, Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'id_artikel' => 'required',
+    //         'id_headline' => 'required',
+    //     ]);
+
+    //     $artikelheadline = Artikelheadline::find($id);
+
+    //     if (empty($artikelheadline)) {
+    //         return redirect()->route('artikel');
+    //     }
+
+    //     $artikelheadline->id_artikel = trim($request->id_artikel);
+    //     $artikelheadline->id_headline = trim($request->id_headline);
+    //     $artikelheadline->save();
+
+    //     if ($artikelheadline) {
+    //         return redirect()->route('artikel')->with(['success' => 'Success']);
+    //     } else {
+    //         return redirect()->route('artikel')->with(['error' => 'Failed']);
+    //     }
+    // }
 }
