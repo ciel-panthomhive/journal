@@ -1,25 +1,41 @@
 @role('admin')
-<div class="sidenav">
-    <a href="{{ route('home') }}" class="btn btn-primary">Home</a>
-    <a href="{{ route('kategori') }}" class="btn btn-primary">Rubik</a>
-    <a href="{{ route('subkategori') }}" class="btn btn-primary">Kategori</a></td>
-    <a href="{{ route('user') }}" class="btn btn-primary">User</a></td>
-</div>
+<li>
+    <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('kategori') }}">{{ __('Rubik') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('subkategori') }}">{{ __('Kategori') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('user') }}">{{ __('User') }}</a>
+</li>
 @endrole
 
 @role('redaktur')
-<div class="sidenav">
-    <a href="{{ route('home') }}" class="btn btn-primary">Home</a>
-    <a href="{{ route('publish') }}" class="btn btn-primary">Publish</a></td>
-    <a href="{{ route('myartikel') }}" class="btn btn-primary">My Artikel</a></td>
-    <a href="{{ route('headline') }}" class="btn btn-primary">Headline</a></td>
-</div>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('publish') }}">{{ __('Publish') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('myartikel') }}">{{ __('My Artikel') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('headline') }}">{{ __('Headline') }}</a>
+</li>
 @endrole
 
 @role('jurnalis')
-<div class="sidenav">
-    <a href="{{ route('kategori') }}" class="btn btn-primary">Home</a>
-    <a href="{{ route('subkategori') }}" class="btn btn-primary">Publish</a></td>
-    <a href="{{ route('user') }}" class="btn btn-primary">Add Artikel</a></td>
-</div>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('subkategori') }}">{{ __('Publish') }}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('artikelredaktur.add') }}">{{ __('Add Artikel') }}</a>
+</li>
 @endrole

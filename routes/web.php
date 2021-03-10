@@ -23,6 +23,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 //admin-kategori
 Route::get('/kategori', 'App\Http\Controllers\KategoriController@index')->name('kategori');
 Route::get('/kategori/add', 'App\Http\Controllers\KategoriController@add')->name('kategori.add');
