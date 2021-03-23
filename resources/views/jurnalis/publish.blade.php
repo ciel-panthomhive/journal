@@ -5,7 +5,7 @@
         <div class="card mt-5">
             @include('layouts.alert')
             <div class="card-header text-center">
-                Headline
+                Publish
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover table-striped">
@@ -15,36 +15,33 @@
                             <th>Judul Artikel</th>
                             <th>Tanggal Submit</th>
                             <th>Tanggal Publish</th>
-                            <th>Jenis</th>
-                            <th>Action</th>
+                            <th>Penulis</th>
+                            <th>Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($artikelheadline as $a)
+                        @foreach ($artikelstatus as $a)
+                            {{-- @dd($a) --}}
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    @isset($a->artikel)
+                                <td> @isset($a->artikel)
                                         {{ $a->artikel->judul }}
                                     @endisset
                                 </td>
-                                <td>
-                                    @isset($a->artikel)
-                                        {{ $a->artikel->update_at }}
-                                    @endisset
-                                </td>
-                                <td>
-                                    @isset($a->artikel)
-                                        {{ $a->artikel->publish->created_at }}
-                                    @endisset
-                                </td>
-                                <td> @isset($a->headline)
-                                        {{ $a->headline->jenis }}
+                                <td>@isset($a->artikel)
+                                        {{ $a->artikel->updated_at }}
                                     @endisset</td>
-                                <td>
-                                    <a href="{{ route('headlineedit', ['id' => $a->id]) }}"
-                                        class="btn btn-danger">Edit</a>
                                 </td>
+                                <td>{{ $a->updated_at }}</td>
+
+                                <td>
+                                    @isset($a->artikel)
+                                        {{ $a->artikel->user->name }}
+                                    @endisset
+                                </td>
+                                <td>@isset($a->artikel)
+                                        {{ $a->artikel->keterangan }}
+                                    @endisset</td>
                             </tr>
                         @endforeach
                     </tbody>

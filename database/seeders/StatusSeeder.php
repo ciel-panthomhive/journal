@@ -16,6 +16,7 @@ class StatusSeeder extends Seeder
     {
         Status::create(['statuses' => 'Belum di verifikasi']);
         Status::create(['statuses' => 'Publish']);
+        Status::create(['statuses' => 'Draft']);
         Status::create(['statuses' => 'Tolak']);
     }
 }

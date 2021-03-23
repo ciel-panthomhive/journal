@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Artikelsubkategori extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $table = 'artikelsubkategori';
 

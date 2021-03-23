@@ -23,9 +23,9 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ route('myartikel') }}">{{ __('My Artikel') }}</a>
 </li>
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link" href="{{ route('headline') }}">{{ __('Headline') }}</a>
-</li>
+</li> --}}
 @endrole
 
 @role('jurnalis')
@@ -33,7 +33,7 @@
     <a class="nav-link" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('subkategori') }}">{{ __('Publish') }}</a>
+    <a class="nav-link" href="{{ route('publish.jurnalis') }}">{{ __('Publish') }}</a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="{{ route('artikelredaktur.add') }}">{{ __('Add Artikel') }}</a>

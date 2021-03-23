@@ -20,22 +20,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($artikel as $a)
+                        @foreach ($artikelstatus as $a)
+                            {{-- @dd($a) --}}
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $a->judul }}</td>
+                                <td> @isset($a->artikel)
+                                        {{ $a->artikel->judul }}
+                                    @endisset
+                                </td>
+                                <td>@isset($a->artikel)
+                                        {{ $a->artikel->updated_at }}
+                                    @endisset</td>
+                                </td>
                                 <td>{{ $a->updated_at }}</td>
+
                                 <td>
-                                    @isset($a->publish)
-                                        {{ $a->publish->created_at }}
+                                    @isset($a->artikel)
+                                        {{ $a->artikel->user->name }}
                                     @endisset
                                 </td>
-                                <td>
-                                    @isset($a->users)
-                                        {{ $a->users->name }}
-                                    @endisset
-                                </td>
-                                <td>{{ $a->keterangan }}</td>
+                                <td>@isset($a->artikel)
+                                        {{ $a->artikel->keterangan }}
+                                    @endisset</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -19,31 +19,32 @@
             </div> --}}
             <div class="card-body">
                 <a href="{{ route('myartikel') }}" class="btn btn-primary">Back</a>
+                @role('redaktur')
+                <div class="form-group" style="float:Right">
+                    <h4>{{ $artikel->user->name }}</h4>
+                    <td>{{ $artikel->user->updated_at }}</td>
+                </div>
+                @endrole
                 <br />
                 <br />
 
-                <form method="post" action="{{ route('redaktur.draft') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('redakturdraft.update', ['id' => $artikel->id]) }}"
+                    enctype="multipart/form-data">
 
                     {{ csrf_field() }}
+                    {{ method_field('PUT') }}
 
                     <div class="row">
 
-                        {{-- <div class="col">
-                            <label>Tanggal Penulisan</label>
-                            <input type="date" name="tanggal" class="form-control" placeholder="Tanggal">
 
-                            @if ($errors->has('tanggal'))
-                                <div class="text-danger">
-                                    {{ $errors->first('tanggal') }}
-                                </div>
-                            @endif
-                        </div> --}}
 
                         <div class="col">
                             <label>Kategori</label>
                             <select class="form-control select2-single" name="id_subkategori">
                                 @forelse ($subkategori as $k)
-                                    <option value="{{ $k->id }}">{{ $k->subkategories }} </option>
+                                    <option value="{{ $k->id }}">
+                                        {{ $k->id_kategori == $artikel->id_subkategori ? 'selected' : '' }}
+                                        {{ $k->subkategories }}</option>
                                 @empty
                                     <option value=""> </option>
                                 @endforelse
@@ -64,7 +65,7 @@
 
                         <div class="col">
                             <label>Judul</label>
-                            <input type="text" name="judul" class="form-control" placeholder="Judul">
+                            <input type="text" name="judul" class="form-control" value="{{ $artikel->judul }}">
 
                             @if ($errors->has('judul'))
                                 <div class="text-danger">
@@ -75,41 +76,27 @@
 
                         <div class="col">
                             <label>Thumbnail</label><br>
-                            <input type="file" name="thumb">
-
+                            <input type="file" name="thumb" value="{{ $artikel->thumb }}">
 
                             @if ($errors->has('thumb'))
                                 <div class="text-danger">
                                     {{ $errors->first('thumb') }}
                                 </div>
                             @endif
+                            <img src="{{ asset('uploads/' . $artikel->thumb) }}" style="width: 100px" />
                         </div>
                     </div>
             </div>
 
             <div class="col">
                 <label>Isi</label>
-                <textarea id="isi" name="isi" class="" placeholder="Isi"></textarea>
-
-                @if ($errors->has('isi'))
-                    <div class="text-danger">
-                        {{ $errors->first('isi') }}
-                    </div>
-                @endif
+                <textarea id="isi" name="isi" class="">{{ $artikel->isi }}</textarea>
             </div>
 
             <div class="form-group">
-                @role('redaktur')
                 <button type="submit" style="" class="btn btn-warning">Draft</button>
-                <button formaction="{{ route('artikelredaktur.new') }}" type="submit" style="float:Right"
-                    class="btn btn-success">Kirim</button>
-                @endrole
-                @role('jurnalis')
-                <button formaction="{{ route('artikeljurnalis.newDraft') }}type=" submit" style=""
-                    class="btn btn-warning">Draft</button>
-                <button formaction="{{ route('artikeljurnalis.new') }}" type="submit" style="float:Right"
-                    class="btn btn-success">Kirim</button>
-                @endrole
+                <button type="submit" formaction="{{ route('artikelredaktur.update', ['id' => $artikel->id]) }}"
+                    name="kirim" style="float:Right" class="btn btn-success">Kirim</button>
             </div>
 
             </form>

@@ -39,7 +39,7 @@ Route::get('/kategori/delete/{id}', 'App\Http\Controllers\KategoriController@del
 //admin-subkategori
 Route::get('/subkategori', 'App\Http\Controllers\SubkategoriController@index')->name('subkategori');
 Route::get('/subkategori/add', 'App\Http\Controllers\SubkategoriController@add')->name('subkategori.add');
-Route::post('subkategori/new', 'App\Http\Controllers\SubkategoriController@new')->name('subkategori.new');
+Route::post('/subkategori/new', 'App\Http\Controllers\SubkategoriController@new')->name('subkategori.new');
 Route::get('/subkategori/edit/{id}', 'App\Http\Controllers\SubkategoriController@edit')->name('subkategori.edit');
 Route::put('/subkategori/update/{id}', 'App\Http\Controllers\SubkategoriController@update')->name('subkategori.update');
 Route::get('/subkategori/delete/{id}', 'App\Http\Controllers\SubkategoriController@delete')->name('subkategori.delete');
@@ -51,13 +51,19 @@ Route::post('user/new', 'App\Http\Controllers\UserController@new')->name('user.n
 Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
 
 
-//redaktur
-Route::get('/publish', 'App\Http\Controllers\ArtikelRedakturController@publish')->name('publish');
-Route::get('/myartikel', 'App\Http\Controllers\ArtikelRedakturController@myartikel')->name('myartikel');
+//route utama
+Route::get('/publish', 'App\Http\Controllers\DashboardController@publish')->name('publish');
+Route::get('/myartikel', 'App\Http\Controllers\DashboardController@myartikel')->name('myartikel');
 Route::get('/artikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
-Route::post('artikel/new', 'App\Http\Controllers\ArtikelRedakturController@new')->name('artikelredaktur.new');
+Route::get('/publish-jurnalis', 'App\Http\Controllers\DashboardController@publishJurnalis')->name('publish.jurnalis');
 
-//redaktur-headline
-Route::get('/headline', 'App\Http\Controllers\HeadlineController@index')->name('headline');
-Route::get('/headline/edit/{id}', 'App\Http\Controllers\HeadlineController@edit')->name('headline.edit');
-Route::put('/headline/update/{id}', 'App\Http\Controllers\HeadlineController@update')->name('headline.update');
+//artikel redaktur
+Route::post('/artikel/newPublish', 'App\Http\Controllers\ArtikelRedakturController@newPublish')->name('artikelredaktur.new');
+Route::post('/artikel/newDraft', 'App\Http\Controllers\ArtikelRedakturController@newDraft')->name('redaktur.draft');
+Route::get('/artikel/edit/{id}', 'App\Http\Controllers\ArtikelRedakturController@edit')->name('artikelredaktur.edit');
+Route::put('/artikel/update/{id}', 'App\Http\Controllers\ArtikelRedakturController@update')->name('artikelredaktur.update');
+Route::put('/artikel/updateDraft/{id}', 'App\Http\Controllers\ArtikelRedakturController@updateDraft')->name('redakturdraft.update');
+
+//artikel jurnalis
+Route::post('/artikel/newSend', 'App\Http\Controllers\ArtikelJurnalisController@newPublish')->name('artikeljurnalis.new');
+Route::post('/artikel/new', 'App\Http\Controllers\ArtikelJurnalisController@newDraft')->name('artikeljurnalis.newDraft');

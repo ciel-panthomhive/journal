@@ -17,7 +17,6 @@ class CreateArtikelsubkategoriTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_artikel');
             $table->unsignedBigInteger('id_subkategori');
-            $table->timestamps();
 
             $table->foreign('id_artikel')->references('id')->on('artikel')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_subkategori')->references('id')->on('subkategori')->onDelete('cascade')->onUpdate('cascade');

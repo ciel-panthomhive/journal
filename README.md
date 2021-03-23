@@ -32,6 +32,5 @@
     3. Run `php artisan db:seed --class=RoleTableSeeder`
     4. Run `php artisan db:seed --class=AdminSeeder`
     5. Run `php artisan db:seed --class=StatusSeeder`
-    6. Run `php artisan db:seed --class=HeadlineSeeder`
     7. Run `php artisan serve`
     8. Open the url

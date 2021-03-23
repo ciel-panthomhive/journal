@@ -23,18 +23,8 @@ class Artikel extends Model
         return $this->hasMany(Artikelstatus::class, 'id_artikel', 'id');
     }
 
-    public function artikelheadline()
-    {
-        return $this->hasMany(Artikelheadline::class, 'id_artikel', 'id');
-    }
-
     public function artikelsubkategori()
     {
         return $this->hasMany(Artikelsubkategor::class, 'id_artikel', 'id');
-    }
-
-    public function publish()
-    {
-        return $this->hasOne(Publish::class, 'id_artikel', 'id');
     }
 }

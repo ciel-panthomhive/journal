@@ -19,7 +19,7 @@ class CreateArtikelTable extends Migration
             $table->string('thumb');
             $table->text('isi');
             $table->unsignedBigInteger('id_user');
-            $table->text('Keterangan');
+            $table->text('Keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
