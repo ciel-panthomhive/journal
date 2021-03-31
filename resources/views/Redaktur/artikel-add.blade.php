@@ -105,7 +105,7 @@
                     class="btn btn-success">Kirim</button>
                 @endrole
                 @role('jurnalis')
-                <button formaction="{{ route('artikeljurnalis.newDraft') }}type=" submit" style=""
+                <button formaction="{{ route('artikeljurnalis.newDraft') }}" type="submit" style=""
                     class="btn btn-warning">Draft</button>
                 <button formaction="{{ route('artikeljurnalis.new') }}" type="submit" style="float:Right"
                     class="btn btn-success">Kirim</button>

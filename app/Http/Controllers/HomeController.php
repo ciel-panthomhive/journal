@@ -30,10 +30,10 @@ class HomeController extends Controller
         $auth = Auth::user()->id;
         $status = Status::all();
         $artikel = Artikel::with(['user', 'artikelstatus.status'])
-            ->where('id_user', $auth)->get();
+            ->where('id_user', $auth)->latest()->get();
 
         $artikelstatus = Artikelstatus::with(['artikel.user', 'status'])
-            ->where('id_status', 1)->get();
+            ->where('id_status', 1)->latest()->get();
         return view('home', ['artikelstatus' => $artikelstatus, 'artikel' => $artikel, 'status' => $status]);
     }
 }

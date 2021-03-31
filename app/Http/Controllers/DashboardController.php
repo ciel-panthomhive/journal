@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function publish()
     {
         $artikelstatus = Artikelstatus::with(['artikel.user', 'status'])
-            ->where('id_status', 2)->get();
+            ->where('id_status', 2)->latest()->get();
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
     }
 
@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $auth = Auth::user()->id;
         $status = Status::all();
         $artikel = Artikel::with(['user', 'artikelstatus.status'])
-            ->where('id_user', $auth)->get();
+            ->where('id_user', $auth)->latest()->get();
         return view('redaktur.myartikel', ['artikel' => $artikel, 'status' => $status]);
     }
 
@@ -32,8 +32,13 @@ class DashboardController extends Controller
         $artikelstatus = Artikelstatus::with(['artikel.user', 'status'])
             ->join('artikel', 'artikel.id', '=', 'artikelstatus.id_artikel')
             ->where('id_user', $auth, 'AND')
-            ->where('id_status', 2)->get();
+            ->where('id_status', 2)->latest('artikel.id')->get();
 
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
+    }
+
+    public function change()
+    {
+        return view('Auth.ubahpass');
     }
 }

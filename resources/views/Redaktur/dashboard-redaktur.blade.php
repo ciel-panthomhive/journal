@@ -13,8 +13,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td> @isset($a->artikel)
-                        <a href="{{ route('artikelredaktur.edit', ['id' => $a->id]) }}"
-                            style="color: #000">{{ $a->artikel->judul }}</a>
+                        <a href="{{ route('read', ['id' => $a->id]) }}" style="color: #000">{{ $a->artikel->judul }}</a>
                     @endisset
                 </td>
                 <td>@isset($a->artikel)

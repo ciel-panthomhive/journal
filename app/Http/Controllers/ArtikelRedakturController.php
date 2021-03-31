@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ArtikelRedakturController extends Controller
 {
+    //add artikel
     public function add()
     {
         $subkategori = Subkategori::all();
@@ -24,19 +25,11 @@ class ArtikelRedakturController extends Controller
 
     function newDraft(Request $request)
     {
-        // dd($request->all());
-        // $status = 1;
-        // if (isset($request->draft)) {
-        //     $status = 3;
-        // }
-        // if (isset($request->kirim)) {
-        //     $status = 2;
-        // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
+        $this->validate($request, [
+            'judul' => 'required',
+            'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
+        ]);
 
         $file_upload = $request->file('thumb');
 
@@ -70,19 +63,11 @@ class ArtikelRedakturController extends Controller
 
     function newPublish(Request $request)
     {
-        // dd($request->all());
-        // $status = 1;
-        // if (isset($request->draft)) {
-        //     $status = 3;
-        // }
-        // if (isset($request->kirim)) {
-        //     $status = 2;
-        // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
+        $this->validate($request, [
+            'judul' => 'required',
+            'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
+        ]);
 
         $file_upload = $request->file('thumb');
 
@@ -114,24 +99,28 @@ class ArtikelRedakturController extends Controller
         }
     }
 
+
+    //edit artikel
     public function edit($id)
     {
         $subkategori = Subkategori::all();
         $artikel = Artikel::find($id);
+        $artikelsubkategori = Artikelsubkategori::with(['artikel', 'subkategori'])
+            ->where('id_artikel', $id)->first();
 
         if (empty($artikel)) {
             return redirect()->route('artikel');
         }
 
-        return view('redaktur.artikel-edit', ['artikel' => $artikel, 'subkategori' => $subkategori]);
+        return view('redaktur.artikel-edit', [
+            'artikel' => $artikel,
+            'subkategori' => $subkategori,
+            'artikelsubkategori' => $artikelsubkategori
+        ]);
     }
 
     public function update($id, Request $request)
     {
-        $this->validate($request, [
-            'kategories' => 'required',
-        ]);
-
         $artikel = Artikel::find($id);
 
         if (empty($artikel)) {
@@ -146,31 +135,39 @@ class ArtikelRedakturController extends Controller
         // if (isset($request->kirim)) {
         //     $status = 2;
         // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
+        $this->validate($request, [
+            'judul' => 'required',
+            'thumb' => 'file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
+        ]);
 
         $file_upload = $request->file('thumb');
 
-        $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+        if ($file_upload) {
 
-        $file_upload->move(public_path('uploads'), $fileName);
+            $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+
+            $file_upload->move(public_path('uploads'), $fileName);
+
+            $artikel->thumb = $fileName;
+        }
 
         $artikel->judul = $request->judul;
-        $artikel->thumb = $fileName;
         $artikel->isi = $request->isi;
 
-        $artikelsubkategori = Artikelsubkategori::all();
+        $artikelsubkategori = Artikelsubkategori::with(['artikel', 'subkategori'])
+            ->where('id_artikel', $id)->first();
         $artikelsubkategori->id_artikel = $artikel->id;
         $artikelsubkategori->id_subkategori = trim($request->id_subkategori);
 
-        $artikelstatus = Artikelstatus::all();
+        $artikelstatus = Artikelstatus::with(['artikel', 'status'])
+            ->where('id_artikel', $id)->first();
         $artikelstatus->id_artikel = $artikel->id;
         $artikelstatus->id_status = 2;
 
         $artikel->save();
+        $artikelsubkategori->save();
+        $artikelstatus->save();
 
         if ($artikel && $artikelsubkategori && $artikelstatus) {
             return redirect()->route('myartikel')->with(['success' => 'Success']);
@@ -182,7 +179,9 @@ class ArtikelRedakturController extends Controller
     public function updateDraft($id, Request $request)
     {
         $this->validate($request, [
-            'kategories' => 'required',
+            'judul' => 'required',
+            'thumb' => 'file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
         ]);
 
         $artikel = Artikel::find($id);
@@ -191,62 +190,39 @@ class ArtikelRedakturController extends Controller
             return redirect()->route('myartikel');
         }
 
-        // dd($request->all());
-        // $status = 1;
-        // if (isset($request->draft)) {
-        //     $status = 3;
-        // }
-        // if (isset($request->kirim)) {
-        //     $status = 2;
-        // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
-
         $file_upload = $request->file('thumb');
 
-        $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+        if ($file_upload) {
 
-        $file_upload->move(public_path('uploads'), $fileName);
+            $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+
+            $file_upload->move(public_path('uploads'), $fileName);
+
+            $artikel->thumb = $fileName;
+        }
 
         $artikel->judul = $request->judul;
-        $artikel->thumb = $fileName;
         $artikel->isi = $request->isi;
 
-        $artikelsubkategori = Artikelsubkategori::all();
-        $artikelsubkategori->id_artikel = $artikel->id;
-        $artikelsubkategori->id_subkategori = trim($request->id_subkategori);
 
-        $artikelstatus = Artikelstatus::all();
+        $artikelsubkategori = Artikelsubkategori::with(['artikel', 'subkategori'])
+            ->where('id_artikel', $id)->first();
+        $artikelsubkategori->id_artikel = $artikel->id;
+        $artikelsubkategori->id_subkategori = $request->id_subkategori;
+
+        $artikelstatus = Artikelstatus::with(['artikel', 'status'])
+            ->where('id_artikel', $id)->first();
         $artikelstatus->id_artikel = $artikel->id;
         $artikelstatus->id_status = 3;
 
         $artikel->save();
+        $artikelsubkategori->save();
+        $artikelstatus->save();
 
         if ($artikel && $artikelsubkategori && $artikelstatus) {
             return redirect()->route('myartikel')->with(['success' => 'Success']);
         } else {
             return redirect()->route('myartikel')->with(['error' => 'Failed']);
-        }
-    }
-
-
-    public function delete($id)
-    {
-        $artikel = Artikel::find($id);
-
-        if (empty($artikel)) {
-            return redirect()->route('artikel');
-        }
-
-        $artikel->delete();
-
-        if ($artikel) {
-            return redirect()->route('artikel')->with(['success' => 'Success']);
-        } else {
-            return redirect()->route('artikel')->with(['error' => 'Failed']);
         }
     }
 }

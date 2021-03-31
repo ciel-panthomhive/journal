@@ -27,9 +27,7 @@
                             {{ $a->artikelstatus[0]->status->statuses }}
                         @endisset
                     </td>
-                    <td>
-                        {{ $a->keterangan }}
-                    </td>
+                    <td>{{ $a->Keterangan }}</td>
                 </tr>
             @endforeach
         </tbody>

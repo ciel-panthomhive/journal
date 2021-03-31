@@ -16,7 +16,7 @@ class CreateArtikelTable extends Migration
         Schema::create('artikel', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('thumb');
+            $table->string('thumb')->nullable();
             $table->text('isi');
             $table->unsignedBigInteger('id_user');
             $table->text('Keterangan')->nullable();

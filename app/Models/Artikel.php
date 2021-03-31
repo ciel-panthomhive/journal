@@ -25,6 +25,6 @@ class Artikel extends Model
 
     public function artikelsubkategori()
     {
-        return $this->hasMany(Artikelsubkategor::class, 'id_artikel', 'id');
+        return $this->hasMany(Artikelsubkategori::class, 'id_artikel', 'id');
     }
 }

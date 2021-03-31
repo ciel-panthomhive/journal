@@ -16,7 +16,7 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('start');
 });
 
 Auth::routes();
@@ -67,3 +67,16 @@ Route::put('/artikel/updateDraft/{id}', 'App\Http\Controllers\ArtikelRedakturCon
 //artikel jurnalis
 Route::post('/artikel/newSend', 'App\Http\Controllers\ArtikelJurnalisController@newPublish')->name('artikeljurnalis.new');
 Route::post('/artikel/new', 'App\Http\Controllers\ArtikelJurnalisController@newDraft')->name('artikeljurnalis.newDraft');
+Route::put('/jurnalis/update/{id}', 'App\Http\Controllers\ArtikelJurnalisController@updatePublish')->name('artikeljurnalis.update');
+Route::put('/jurnalis/upDraft/{id}', 'App\Http\Controllers\ArtikelJurnalisController@updateDraft')->name('artikeljurnalis.upDraft');
+
+//data pribadi
+Route::get('/changepass', 'App\Http\Controllers\DashboardController@change')->name('change');
+
+//verifikasi
+Route::get('/read/{id}', 'App\Http\Controllers\RedakturController@view')->name('read');
+Route::get('/verifikasi/edit/{id}', 'App\Http\Controllers\RedakturController@edit')->name('verifikasi.edit');
+Route::put('/verifikasi/update/{id}', 'App\Http\Controllers\RedakturController@update')->name('verifikasi.update');
+Route::get('/tolak/{id}', 'App\Http\Controllers\RedakturController@tolak')->name('tolak');
+Route::put('/alasan/{id}', 'App\Http\Controllers\RedakturController@alasan')->name('alasan');
+Route::put('/publish/{id}', 'App\Http\Controllers\RedakturController@publish')->name('verifikasi.publish');

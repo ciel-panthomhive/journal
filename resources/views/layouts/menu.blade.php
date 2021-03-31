@@ -39,3 +39,7 @@
     <a class="nav-link" href="{{ route('artikelredaktur.add') }}">{{ __('Add Artikel') }}</a>
 </li>
 @endrole
+
+{{-- <li class="nav-item">
+    <a class="nav-link" href="{{ route('change') }}">{{ __('Ubah Pass') }}</a>
+</li> --}}
