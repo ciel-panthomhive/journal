@@ -15,9 +15,8 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    return view('start');
-});
+Route::get('/', [App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
+Route::get('/artikel/{id}', [App\Http\Controllers\WishlistController::class, 'halaman_artikel'])->name('artikel-wishlist');
 
 Auth::routes();
 
@@ -54,7 +53,7 @@ Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->n
 //route utama
 Route::get('/publish', 'App\Http\Controllers\DashboardController@publish')->name('publish');
 Route::get('/myartikel', 'App\Http\Controllers\DashboardController@myartikel')->name('myartikel');
-Route::get('/artikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
+Route::get('/myartikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
 Route::get('/publish-jurnalis', 'App\Http\Controllers\DashboardController@publishJurnalis')->name('publish.jurnalis');
 
 //artikel redaktur
@@ -71,7 +70,10 @@ Route::put('/jurnalis/update/{id}', 'App\Http\Controllers\ArtikelJurnalisControl
 Route::put('/jurnalis/upDraft/{id}', 'App\Http\Controllers\ArtikelJurnalisController@updateDraft')->name('artikeljurnalis.upDraft');
 
 //data pribadi
-Route::get('/changepass', 'App\Http\Controllers\DashboardController@change')->name('change');
+Route::get('/changepass', 'App\Http\Controllers\ProfilController@change')->name('change');
+Route::get('/profil/{id}', 'App\Http\Controllers\ProfilController@edit')->name('profil');
+Route::put('/profil/update/{id}', 'App\Http\Controllers\ProfilController@update')->name('profil.update');
+Route::post('change-password', 'App\Http\Controllers\ProfilController@changePass')->name('change.password');
 
 //verifikasi
 Route::get('/read/{id}', 'App\Http\Controllers\RedakturController@view')->name('read');

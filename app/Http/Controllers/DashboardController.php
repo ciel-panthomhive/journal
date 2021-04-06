@@ -36,9 +36,4 @@ class DashboardController extends Controller
 
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
     }
-
-    public function change()
-    {
-        return view('Auth.ubahpass');
-    }
 }

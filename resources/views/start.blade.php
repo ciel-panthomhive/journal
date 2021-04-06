@@ -44,46 +44,22 @@
             <h1 class="title-text">Latest News.</h1>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-12">
-                <div class="card">
-                    <img class="card-img-top" src="https://picsum.photos/250" alt="">
-                    <div class="card-body">
-                        <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
-                        <h5 class="card-title">Title</h5>
-                        <p class="card-text">Text</p>
-                    </div>
+            @foreach ($artikel as $artk)
+                <div class="col-md-3 col-sm-6 col-12 mb-2">
+                    <a href="{{ route('artikel-wishlist', $artk->id) }}" style="text-decoration: none; color: black">
+                        <div class="card">
+                            {{-- <img class="card-img-top" src="https://picsum.photos/250" alt=""> --}}
+                            <img class="card-img-top" src="{{ asset('uploads/' . $artk->thumb) }}" style="height: 10rem"
+                                alt="{{ $artk->thumb }}">
+                            <div class="card-body">
+                                <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
+                                <h5 class="card-title">{{ $artk->judul }}</h5>
+                                {{-- <p class="card-text">Text</p> --}}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-12">
-                <div class="card">
-                    <img class="card-img-top" src="https://picsum.photos/250" alt="">
-                    <div class="card-body">
-                        <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
-                        <h5 class="card-title">Title</h5>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-12">
-                <div class="card">
-                    <img class="card-img-top" src="https://picsum.photos/250" alt="">
-                    <div class="card-body">
-                        <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
-                        <h5 class="card-title">Title</h5>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-12">
-                <div class="card">
-                    <img class="card-img-top" src="https://picsum.photos/250" alt="">
-                    <div class="card-body">
-                        <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
-                        <h5 class="card-title">Title</h5>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="row mt-3 justify-content-center">
             <a href="#"><img class="clickable" src="{{ asset('assets/icons/prev-pink.png') }}" width="50" /></a>
@@ -92,45 +68,26 @@
     </div>
     <div class="container my-5">
         <div class="row">
-            <div class="col-lg-3 col-12 m-auto">
+            <div class="col-md-3 col-12 m-auto">
                 <div class="polygon-test mb-3 mx-auto bg-green d-flex align-items-center justify-content-center"
                     style="max-width: 10rem; height: 6rem;">
                     <h1 class="title-text">Video.</h1>
                 </div>
             </div>
-            <div class="col-lg-9 col-12 text-center">
+            <div class="col-md-9 col-12 text-center">
                 <div class="row">
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/4RiI-JZkeLQ"></iframe>
-                        <p>Text</p>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/QFcFEpFmNJ8"></iframe>
-                        <p>Text</p>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/D-nFd38nbfo"></iframe>
-                        <p>Text</p>
-                    </div>
+                    @for ($index = 0; $index < $youtube->count(); $index++)
+                        <div class="col-md-4 col-12">
+                            <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                type="text/html"
+                                src="https://www.youtube.com/embed/{{ $youtube[$index]->id->videoId }}"></iframe>
+                            <p>{{ $youtube[$index]->snippet->title }}</p>
+                        </div>
+                        @if ($index == count($youtube) / 2 - 1)
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/OFmBAtIxWjc"></iframe>
-                        <p>Text</p>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/Cm0mv2qQBes"></iframe>
-                        <p>Text</p>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <iframe class="w-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            type="text/html" src="https://www.youtube.com/embed/DBXH9jJRaDk"></iframe>
-                    </div>
+                    @endif
+                    @endfor
                 </div>
             </div>
         </div>
@@ -146,31 +103,14 @@
         </div>
         <!-- <div class="row mx-4 my-4 border border-success"> -->
         <div class="row mx-4 my-4">
-            <div class="col-lg col-12">
-                <img class="w-100" src="{{ asset('assets/images/cowok-removebg-preview.png') }}">
-                <p class="mb-0">Name : Lorem Ipsum</p>
-                <p>Age : 00</p>
-            </div>
-            <div class="col-lg col-12">
-                <img class="w-100" src="{{ asset('assets/images/cewek-removebg-preview.png') }}">
-                <p class="mb-0">Name : Lorem Ipsum</p>
-                <p>Age : 00</p>
-            </div>
-            <div class="col-lg col-12">
-                <img class="w-100" src="{{ asset('assets/images/cowok-removebg-preview.png') }}">
-                <p class="mb-0">Name : Lorem Ipsum</p>
-                <p>Age : 00</p>
-            </div>
-            <div class="col-lg col-12">
-                <img class="w-100" src="{{ asset('assets/images/cewek-removebg-preview.png') }}">
-                <p class="mb-0">Name : Lorem Ipsum</p>
-                <p>Age : 00</p>
-            </div>
-            <div class="col-lg col-12">
-                <img class="w-100" src="{{ asset('assets/images/cowok-removebg-preview.png') }}">
-                <p class="mb-0">Name : Lorem Ipsum</p>
-                <p>Age : 00</p>
-            </div>
+            @foreach ($jurnalis as $jrnls)
+                <div class="col-md col-sm-6 col-12">
+                    <img class="w-100"
+                        src="{{ $loop->even ? asset('assets/images/cewek-removebg-preview.png') : asset('assets/images/cowok-removebg-preview.png') }}">
+                    <p style="text-align:center" class="mb-0">Nama : {{ $jrnls->name }}</p>
+                    {{-- <p>Age : 00</p> --}}
+                </div>
+            @endforeach
         </div>
         <!-- </div> -->
     </div>

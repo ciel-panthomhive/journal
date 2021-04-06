@@ -20,7 +20,8 @@
                         {{ $artikel->artikelstatus[0]->updated_at }}
                     </h6>
                     <br />
-                    <img src="{{ asset('uploads/' . $artikel->thumb) }}" style="width:650px; margin-left:200px" />
+                    <img src="{{ asset('uploads/' . $artikel->thumb) }}"
+                        style="width:700px; height:450px ; margin-left:200px; object-fit: cover" />
                     <br />
                     <br />
                     <td>{!! $artikel->isi !!}</td>
@@ -28,12 +29,10 @@
 
         </div>
         <br />
-        @role('redaktur')
         <button type="submit" class="btn btn-success" style="float:right">Publish</button>
 
         <a href="{{ route('tolak', ['id' => $artikel->id]) }}" style="float:left" class="btn btn-danger">Tolak</a>
         <a href="{{ route('verifikasi.edit', ['id' => $artikel->id]) }}" style="margin-left: 500px;"
             class="btn btn-warning">Edit</a>
-        @endrole
     </div>
 @endsection
