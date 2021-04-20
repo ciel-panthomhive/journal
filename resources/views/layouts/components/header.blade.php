@@ -24,18 +24,27 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <!-- end active link -->
-                <li class="nav-item mx-5">
+                <!-- <li class="nav-item mx-5">
                     <a class="nav-link" href="#">ISSUE</a>
-                </li>
-                <li class="nav-item mx-5 dropdown">
-                    <a class="nav-link dropdown" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">TRAVELING</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Action 1</a>
-                        <a class="dropdown-item" href="#">Action 2</a>
-                    </div>
-                </li>
-                <li class="nav-item mx-5 dropdown">
+                </li> -->
+                @foreach ($kategori as $item)
+                    @if ($item->subkategori->count() != 0)
+                        <li class="nav-item mx-5 dropdown">
+                            <a class="nav-link dropdown" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">{{ $item->kategories }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                @foreach ($item->subkategori as $subs)
+                                    <a class="dropdown-item" href="#">{{ $subs->subkategories }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item mx-5">
+                            <a class="nav-link" href="#">{{ $item->kategories }}</a>
+                        </li>
+                    @endif
+                @endforeach
+                {{-- <li class="nav-item mx-5 dropdown">
                     <a class="nav-link dropdown" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">LIFESTYLE</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -50,7 +59,7 @@
                         <a class="dropdown-item" href="#">Action 1</a>
                         <a class="dropdown-item" href="#">Action 2</a>
                     </div>
-                </li>
+                </li> --}}
                 <li class="nav-item mx-5">
                     <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-key"></i></a>
                 </li>

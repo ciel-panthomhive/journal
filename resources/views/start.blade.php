@@ -1,5 +1,6 @@
 @extends('layouts.wishlist')
 @section('content')
+    {{-- {{ dd($artie) }} --}}
     <div class="container-fluid">
         <div id="carouselId" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -8,25 +9,35 @@
                 <li data-target="#carouselId" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <div class="d-flex">
-
-                        <img src="https://picsum.photos/966/400" alt="First slide">
-                        <div class="card w-100 bg-purple">
-                            <div class="card-body">
-                                <h4>Title</h4>
-                                <p>Description</p>
+                {{-- {{ dd($artikelstatus) }} --}}
+                @foreach ($artikelstatus as $a)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <div class="d-flex">
+                            <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
+                                style="height: 25rem; width: 60%" alt="First slide">
+                            <div class="card bg-purple" style="width: 40%">
+                                <div class="card-body">
+                                    <h4>{{ $a->artikel->judul }}</h4>
+                                    <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/1366/400" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/1366/400" alt="Third slide">
-                </div>
+                @endforeach
+
+                {{-- <div class="carousel-item">
+                <img class="card-img-top" src="{{ asset('uploads/' . $a->artikel->thumb) }}" style="height: 25rem"
+                    alt="Second slide">
             </div>
+
+            <div class="carousel-item">
+                <img class="card-img-top" src="{{ asset('uploads/' . $a->artikel->thumb) }}" style="height: 25rem"
+                    alt="Third slide">
+            </div> --}}
+
+
+            </div>
+
             <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
                 <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
                 <img src="{{ asset('assets/icons/prev-green.png') }}" width="50" />
@@ -49,10 +60,11 @@
                     <a href="{{ route('artikel-wishlist', $artk->id) }}" style="text-decoration: none; color: black">
                         <div class="card">
                             {{-- <img class="card-img-top" src="https://picsum.photos/250" alt=""> --}}
-                            <img class="card-img-top" src="{{ asset('uploads/' . $artk->thumb) }}" style="height: 10rem"
-                                alt="{{ $artk->thumb }}">
+                            <img class="card-img-top" src="{{ asset('uploads/' . $artk->thumb) }}"
+                                style="height: 10rem; object-fit: cover" alt="{{ $artk->thumb }}">
                             <div class="card-body">
-                                <small class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">Lifestyle</small>
+                                <small
+                                    class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">{{ $artk->artikelsubkategori[0]->subkategori->subkategories }}</small>
                                 <h5 class="card-title">{{ $artk->judul }}</h5>
                                 {{-- <p class="card-text">Text</p> --}}
                             </div>
@@ -103,10 +115,10 @@
         </div>
         <!-- <div class="row mx-4 my-4 border border-success"> -->
         <div class="row mx-4 my-4">
-            @foreach ($jurnalis as $jrnls)
+            @foreach ($users as $jrnls)
                 <div class="col-md col-sm-6 col-12">
-                    <img class="w-100"
-                        src="{{ $loop->even ? asset('assets/images/cewek-removebg-preview.png') : asset('assets/images/cowok-removebg-preview.png') }}">
+                    <img style="border: 1px solid #000000; width: 150px; height: 150px; overflow: hidden; border-radius: 50%; object-fit: cover; display: block; margin-right: auto; margin-left: auto;"
+                        src="{{ isset($jrnls->foto) ? asset('uploads/' . $jrnls->foto) : asset('assets/images/cowok-removebg-preview.png') }}">
                     <p style="text-align:center" class="mb-0">Nama : {{ $jrnls->name }}</p>
                     {{-- <p>Age : 00</p> --}}
                 </div>
