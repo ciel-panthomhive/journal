@@ -2,7 +2,7 @@
     <div class="container py-5 pr-5">
         <div class="row">
             <div class="col m-3 text-center">
-                <img class="mb-4" src="{{ asset('assets/images/logo_wishlist.png') }}" width="200">
+                <img class="mb-4" src="{{ asset('assets/images/Wishlist Logo2.png') }}" width="200">
                 <p class="text-white">Support by:</p>
                 <a href="https://www.dinamika.ac.id" target="_blank">
                     <img src="{{ asset('assets/images/undika.png') }}" />

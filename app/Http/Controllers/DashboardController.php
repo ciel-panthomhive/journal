@@ -6,6 +6,7 @@ use App\Models\Artikel;
 use App\Models\Artikelstatus;
 use App\Models\Artikelsubkategori;
 use App\Models\Status;
+use App\Models\Subkategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,9 +39,16 @@ class DashboardController extends Controller
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
     }
 
-    public function halaman($id_sub)
+    public function halaman($id)
     {
-        $artikelsubkategori = Artikelsubkategori::with(['artikel', 'subkategori'])
-            ->where('id_subkategori', $id_sub)->get();
+        $subkategori = Subkategori::find($id);
+        $artikel = Artikel::with(['artikelstatus', 'artikelsubkategori.subkategori', 'user'])
+            ->join('artikelsubkategori', 'artikel.id', '=', 'artikelsubkategori.id_artikel')
+            ->where('id_subkategori', $id, 'AND')
+            ->join('artikelstatus', 'artikel.id', '=', 'artikelstatus.id_artikel')
+            ->where('id_status', 2)->get();
+
+        // dd($artikel);
+        return view('halaman', ['subkategori' => $subkategori, 'artikel' => $artikel]);
     }
 }

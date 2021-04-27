@@ -20,8 +20,8 @@
             <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                 <!-- active link -->
                 <li class="nav-item mx-5 active">
-                    <a class="nav-link rounded-lg rounded-pill px-5 bg-pink text-white" href="#">HOME <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link rounded-lg rounded-pill px-5 bg-pink text-white"
+                        href="{{ route('wishlist') }}">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- end active link -->
                 <!-- <li class="nav-item mx-5">
@@ -34,7 +34,8 @@
                                 aria-haspopup="true" aria-expanded="false">{{ $item->kategories }}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
                                 @foreach ($item->subkategori as $subs)
-                                    <a class="dropdown-item" href="#">{{ $subs->subkategories }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('halaman', ['id' => $subs->id]) }}">{{ $subs->subkategories }}</a>
                                 @endforeach
                             </div>
                         </li>

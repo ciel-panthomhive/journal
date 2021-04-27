@@ -28,7 +28,7 @@ class WishlistController extends Controller
             ->skip(3)->take(4)->get();
 
         // kategori
-        // $kategori = Kategori::with('subkategori')->get();
+        $subkategori = Subkategori::all();
 
         // user
         $users = User::get()->take(5);
@@ -54,7 +54,7 @@ class WishlistController extends Controller
         return view('start', [
             'artikelstatus' => $artikelstatus,
             'artikel' => $artikel,
-            // 'kategori' => $kategori,
+            'subkategori' => $subkategori,
             'users' => $users,
             'youtube' => $youtube_cache,
         ]);

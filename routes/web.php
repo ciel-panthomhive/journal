@@ -15,6 +15,8 @@ use Spatie\Permission\Models\Role;
 |
 */
 
+
+//route utama
 Route::get('/', [App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
 Route::get('/artikel/{id}', [App\Http\Controllers\WishlistController::class, 'halaman_artikel'])->name('artikel-wishlist');
 
@@ -26,6 +28,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Route::get('/menu/{id}', 'App\Http\Controllers\DashboardController@halaman')->name('halaman');
 
 //admin-kategori
 Route::get('/kategori', 'App\Http\Controllers\KategoriController@index')->name('kategori');

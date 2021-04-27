@@ -11,18 +11,21 @@
             <div class="carousel-inner" role="listbox">
                 {{-- {{ dd($artikelstatus) }} --}}
                 @foreach ($artikelstatus as $a)
-                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <div class="d-flex">
-                            <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
-                                style="height: 25rem; width: 60%" alt="First slide">
-                            <div class="card bg-purple" style="width: 40%">
-                                <div class="card-body">
-                                    <h4>{{ $a->artikel->judul }}</h4>
-                                    <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
+                    <a href="{{ route('artikel-wishlist', $a->artikel->id) }}"
+                        style="text-decoration: none; color: black">
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                            <div class="d-flex">
+                                <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
+                                    style="height: 25rem; width: 60%" alt="First slide">
+                                <div class="card bg-purple" style="width: 40%">
+                                    <div class="card-body">
+                                        <h4>{{ $a->artikel->judul }}</h4>
+                                        <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
 
                 {{-- <div class="carousel-item">
@@ -118,7 +121,7 @@
             @foreach ($users as $jrnls)
                 <div class="col-md col-sm-6 col-12">
                     <img style="border: 1px solid #000000; width: 150px; height: 150px; overflow: hidden; border-radius: 50%; object-fit: cover; display: block; margin-right: auto; margin-left: auto;"
-                        src="{{ isset($jrnls->foto) ? asset('uploads/' . $jrnls->foto) : asset('assets/images/cowok-removebg-preview.png') }}">
+                        src="{{ $jrnls->foto != '' ? asset('uploads/' . $jrnls->foto) : asset('assets/images/cowok-removebg-preview.png') }}">
                     <p style="text-align:center" class="mb-0">Nama : {{ $jrnls->name }}</p>
                     {{-- <p>Age : 00</p> --}}
                 </div>
