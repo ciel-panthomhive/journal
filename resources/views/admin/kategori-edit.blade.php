@@ -11,14 +11,14 @@
                 <br />
                 <br />
 
-                <form method="post" action="{{ route('kategori.update', ['id' => $kategori[0]->id]) }}">
+                <form method="post" action="{{ route('kategori.update', ['id' => $kategori->id]) }}">
 
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
 
                     <div class="form-group">
                         <label>Rubik</label>
-                        <input type="text" name="kategories" class="form-control" value="{{ $kategori[0]->kategories }}">
+                        <input type="text" name="kategories" class="form-control" value="{{ $kategori->kategories }}">
 
                         @if ($errors->has('kategories'))
                             <div class="text-danger">

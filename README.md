@@ -31,6 +31,10 @@
     2. Run `php artisan migrate:fresh`
     3. Run `php artisan db:seed --class=RoleTableSeeder`
     4. Run `php artisan db:seed --class=AdminSeeder`
-    5. Run `php artisan db:seed --class=StatusSeeder`
-    7. Run `php artisan serve`
-    8. Open the url
+    5. Run `php artisan db:seed --class=JurnalisSeeder` //optional
+    6. Run `php artisan db:seed --class=RedakturSeeder` //optional
+    7. Run `php artisan db:seed --class=StatusSeeder`
+    8. Run `php artisan db:seed --class=RubikSeeder` //optional
+    9. Run `php artisan db:seed --class=KategoriSeeder` //optional
+    10. Run `php artisan serve`
+    11. Open the url
