@@ -20,11 +20,11 @@ class ArtikelJurnalisController extends Controller
         // if (isset($request->kirim)) {
         //     $status = 2;
         // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
+        $this->validate($request, [
+            'judul' => 'required',
+            'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
+        ]);
 
         $file_upload = $request->file('thumb');
 
@@ -66,11 +66,11 @@ class ArtikelJurnalisController extends Controller
         // if (isset($request->kirim)) {
         //     $status = 2;
         // }
-        // $this->validate($request, [
-        //     'judul' => 'required',
-        //     'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-        //     'isi' => 'required',
-        // ]);
+        $this->validate($request, [
+            'judul' => 'required',
+            'thumb' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+            'isi' => 'required',
+        ]);
 
         $file_upload = $request->file('thumb');
 

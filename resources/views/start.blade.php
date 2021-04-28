@@ -11,21 +11,24 @@
             <div class="carousel-inner" role="listbox">
                 {{-- {{ dd($artikelstatus) }} --}}
                 @foreach ($artikelstatus as $a)
-                    <a href="{{ route('artikel-wishlist', $a->artikel->id) }}"
-                        style="text-decoration: none; color: black">
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <div class="d-flex">
-                                <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
-                                    style="height: 25rem; width: 60%" alt="First slide">
-                                <div class="card bg-purple" style="width: 40%">
-                                    <div class="card-body">
+                    {{-- <a href="{{ route('artikel-wishlist', $a->artikel->id) }}" --}}
+                    {{-- style="text-decoration: none; color: black"> --}}
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <div class="d-flex">
+                            <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
+                                style="height: 25rem; width: 60%" alt="First slide">
+                            <div class="card bg-purple" style="width: 40%">
+                                <div class="card-body">
+                                    <a href="{{ route('artikel-wishlist', $a->artikel->id) }}"
+                                        style="text-decoration: none; color: black">
                                         <h4>{{ $a->artikel->judul }}</h4>
                                         <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
+                            {{-- </a> --}}
                         </div>
-                    </a>
+                    </div>
                 @endforeach
 
                 {{-- <div class="carousel-item">

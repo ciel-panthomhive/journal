@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artikel;
 use App\Models\Artikelstatus;
 use App\Models\Artikelsubkategori;
+use App\Models\Kategori;
 use App\Models\Status;
 use App\Models\Subkategori;
 use Illuminate\Http\Request;
@@ -51,4 +52,19 @@ class DashboardController extends Controller
         // dd($artikel);
         return view('halaman', ['subkategori' => $subkategori, 'artikel' => $artikel]);
     }
+
+    /*public function halaman_sub($id_kat, $id_sub)
+    {
+        $kategori = Kategori::find($id_sub);
+        $artikel = Artikel::with(['artikelstatus', 'artikelsubkategori.subkategori.kategori', 'user'])
+            ->join('artikelsubkategori', 'artikel.id', '=', 'artikelsubkategori.id_artikel')
+            ->where('id_subkategori', $id_sub, 'AND')
+            ->join('')
+            ->where('')
+            ->join('artikelstatus', 'artikel.id', '=', 'artikelstatus.id_artikel')
+            ->where('id_status', 2)->get();
+
+        // dd($artikel);
+        return view('halaman', ['kategori' => $kategori, 'artikel' => $artikel]);
+    }*/
 }
