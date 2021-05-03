@@ -30,6 +30,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
 Route::get('/menu/{id}', 'App\Http\Controllers\DashboardController@halaman')->name('halaman');
+Route::get('/hal/{id}', 'App\Http\Controllers\DashboardController@halaman_sub')->name('halaman_baru');
 // Route::get('/menu/{kategori}', 'App\Http\Controllers\DashboardController@halaman')->name('halaman');
 // Route::get('/menu/{kategori}/{subkategori}', 'App\Http\Controllers\DashboardController@halaman')->name('halaman');
 

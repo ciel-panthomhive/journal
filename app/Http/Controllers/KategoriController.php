@@ -37,13 +37,13 @@ class KategoriController extends Controller
 
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
+        $ska = Kategori::find($id);
 
-        if (empty($kategori)) {
+        if (empty($ska)) {
             return redirect()->route('kategori');
         }
-
-        return view('admin.kategori-edit', ['kategori' => $kategori]);
+        // dd($ska);
+        return view('admin.kategori-edit', ['ska' => $ska]);
     }
 
     public function update($id, Request $request)

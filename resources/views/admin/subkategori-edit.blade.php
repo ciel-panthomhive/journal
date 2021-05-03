@@ -32,7 +32,7 @@
                         <select class="form-control select2-single" name="id_kategori">
                             @forelse ($kategori as $k)
                                 <option value="{{ $k->id }}"
-                                    {{ $k->kategories == $subkategori->id_kategori ? 'selected' : '' }}>
+                                    {{ $k->id == $subkategori->id_kategori ? 'selected' : '' }}>
                                     {{ $k->kategories }}
                                 </option>
                             @empty

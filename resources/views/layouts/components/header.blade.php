@@ -40,8 +40,10 @@
                             </div>
                         </li>
                     @else
+                        {{-- @dd($item) --}}
                         <li class="nav-item mx-5">
-                            <a class="nav-link" href="#">{{ $item->kategories }}</a>
+                            <a class="nav-link"
+                                href="{{ route('halaman_baru', ['id' => $item->id]) }}">{{ $item->kategories }}</a>
                         </li>
                     @endif
                 @endforeach

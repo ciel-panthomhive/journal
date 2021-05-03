@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function publish()
     {
         $artikelstatus = Artikelstatus::with(['artikel.user', 'status'])
-            ->where('id_status', 2)->latest()->get();
+            ->where('id_status', 2)->latest('updated_at')->get();
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
     }
 
@@ -35,7 +35,7 @@ class DashboardController extends Controller
         $artikelstatus = Artikelstatus::with(['artikel.user', 'status'])
             ->join('artikel', 'artikel.id', '=', 'artikelstatus.id_artikel')
             ->where('id_user', $auth, 'AND')
-            ->where('id_status', 2)->latest('artikel.id')->get();
+            ->where('id_status', 2)->latest('artikelstatus.updated_at')->get();
 
         return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
     }
@@ -47,24 +47,26 @@ class DashboardController extends Controller
             ->join('artikelsubkategori', 'artikel.id', '=', 'artikelsubkategori.id_artikel')
             ->where('id_subkategori', $id, 'AND')
             ->join('artikelstatus', 'artikel.id', '=', 'artikelstatus.id_artikel')
-            ->where('id_status', 2)->get();
+            ->where('id_status', 2)->latest('artikelstatus.updated_at')->get();
 
         // dd($artikel);
         return view('halaman', ['subkategori' => $subkategori, 'artikel' => $artikel]);
     }
 
-    /*public function halaman_sub($id_kat, $id_sub)
+    public function halaman_sub($id_kat)
     {
-        $kategori = Kategori::find($id_sub);
+        $kat = Kategori::find($id_kat);
+
+        $subkate = Subkategori::with(['Kategori'])
+            ->where('subkategories', $kat->kategories)
+            ->get();
+
         $artikel = Artikel::with(['artikelstatus', 'artikelsubkategori.subkategori.kategori', 'user'])
             ->join('artikelsubkategori', 'artikel.id', '=', 'artikelsubkategori.id_artikel')
-            ->where('id_subkategori', $id_sub, 'AND')
-            ->join('')
-            ->where('')
+            ->where('id_subkategori', $subkate[0]->id, 'AND')
             ->join('artikelstatus', 'artikel.id', '=', 'artikelstatus.id_artikel')
             ->where('id_status', 2)->get();
 
-        // dd($artikel);
-        return view('halaman', ['kategori' => $kategori, 'artikel' => $artikel]);
-    }*/
+        return view('halaman', ['kat' => $kat, 'subkate' => $subkate, 'artikel' => $artikel]);
+    }
 }

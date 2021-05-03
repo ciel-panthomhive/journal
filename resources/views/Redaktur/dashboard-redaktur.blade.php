@@ -5,6 +5,7 @@
             <th>Judul Artikel</th>
             <th>Tanggal Submit</th>
             <th>Penulis</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,9 @@
                     @isset($a->artikel)
                         {{ $a->artikel->user->name }}
                     @endisset
+                </td>
+                <td>
+                    <a href="{{ route('read', ['id' => $a->id]) }}" class="btn btn-success">Detail</a>
                 </td>
             </tr>
         @endforeach

@@ -7,6 +7,7 @@
                 <th>Tanggal Submit</th>
                 <th>Status</th>
                 <th>Keterangan</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,14 @@
                         @endisset
                     </td>
                     <td>{{ $a->Keterangan }}</td>
+                    <td>
+                        @if ($a->artikelstatus[0]->id_status == 3 || $a->artikelstatus[0]->id_status == 4)
+                            <a href="{{ route('artikelredaktur.edit', ['id' => $a->id, 'id_artikel' => $a->artikelstatus[0]->id_artikel]) }}"
+                                class="btn btn-warning">Edit</a>
+                        @else
+                            <a href="#" class="btn btn-secondary">Edit</a>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
