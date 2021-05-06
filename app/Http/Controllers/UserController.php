@@ -25,12 +25,24 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
+            'jk' => 'required',
+            'alamat' => 'required',
+            'ktp' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
         ]);
+
+        $file_upload = $request->file('ktp');
+
+        $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+
+        $file_upload->move(public_path('uploads'), $fileName);
 
         $user = User::create([
             'foto' => '',
             'name' => trim($request->name),
             'email' => trim($request->email),
+            'jk' => trim($request->jk),
+            'alamat' => trim($request->alamat),
+            'ktp' => $fileName,
             'password' => bcrypt(12345678),
         ]);
         $user->assignRole('redaktur');
@@ -57,5 +69,16 @@ class UserController extends Controller
         } else {
             return redirect()->route('user')->with(['error' => 'Failed']);
         }
+    }
+
+    public function detail($id)
+    {
+        $us = User::find($id);
+
+        if (empty($us)) {
+            return redirect()->route('user');
+        }
+
+        return view('admin.detail-user', ['us' => $us]);
     }
 }

@@ -16,7 +16,7 @@
                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                         <div class="d-flex">
                             <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
-                                style="height: 25rem; width: 60%" alt="First slide">
+                                style="height: 25rem; width: 60%; object-fit: cover" alt="First slide">
                             <div class="card bg-purple" style="width: 40%">
                                 <div class="card-body">
                                     <a href="{{ route('artikel-wishlist', $a->artikel->id) }}"
@@ -72,7 +72,7 @@
                                 <small
                                     class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">{{ $artk->artikelsubkategori[0]->subkategori->subkategories }}</small>
                                 <h5 class="card-title">{{ $artk->judul }}</h5>
-                                {{-- <p class="card-text">Text</p> --}}
+                                <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
                             </div>
                         </div>
                     </a>

@@ -41,6 +41,8 @@ class ProfilController extends Controller
             'name' => 'required',
             'foto' => 'file|mimes:jpeg,png,jpg,gif,svg',
             'email' => 'required',
+            'jk' => 'required',
+            'alamat' => 'required',
         ]);
 
         $file_upload = $request->file('foto');
@@ -57,6 +59,8 @@ class ProfilController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->jk = $request->jk;
+        $user->alamat = $request->alamat;
 
         $user->save();
 

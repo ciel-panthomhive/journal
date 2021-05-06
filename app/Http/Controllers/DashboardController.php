@@ -8,6 +8,7 @@ use App\Models\Artikelsubkategori;
 use App\Models\Kategori;
 use App\Models\Status;
 use App\Models\Subkategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

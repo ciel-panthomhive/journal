@@ -18,7 +18,10 @@ class AdminSeeder extends Seeder
             'foto' => '',
             'name' => 'admin',
             'email' => 'admin@localhost.com',
-            'password' => bcrypt(12345678)
+            'password' => bcrypt(12345678),
+            'jk' => 'L/P',
+            'alamat' => 'Surabaya',
+            'ktp' => ''
         ]);
 
         $user->assignRole('admin');

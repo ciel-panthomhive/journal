@@ -52,6 +52,7 @@ Route::get('/subkategori/delete/{id}', 'App\Http\Controllers\SubkategoriControll
 
 //admin-User
 Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user');
+Route::get('/user/detail/{id}', 'App\Http\Controllers\UserController@detail')->name('detail.user');
 Route::get('/user/add', 'App\Http\Controllers\UserController@add')->name('user.add');
 Route::post('user/new', 'App\Http\Controllers\UserController@new')->name('user.new');
 Route::get('/user/delete/{id}', 'App\Http\Controllers\UserController@delete')->name('user.delete');

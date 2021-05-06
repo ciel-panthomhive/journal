@@ -17,6 +17,8 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Alamat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -26,7 +28,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $u->name }}</td>
                                 <td>{{ $u->email }}</td>
+                                <td>{{ $u->jk }}</td>
+                                <td>{{ $u->alamat }}</td>
                                 <td>
+                                    <a href="{{ route('detail.user', ['id' => $u->id]) }}"
+                                        class="btn btn-success">Detail</a>
                                     <a href="{{ route('user.delete', ['id' => $u->id]) }}"
                                         class="btn btn-danger">Delete</a>
                                 </td>

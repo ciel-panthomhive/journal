@@ -18,7 +18,10 @@ class JurnalisSeeder extends Seeder
             'foto' => '',
             'name' => 'jurnalis',
             'email' => 'jurnalis@localhost.com',
-            'password' => bcrypt(12345678)
+            'password' => bcrypt(12345678),
+            'jk' => 'L/P',
+            'alamat' => 'Surabaya',
+            'ktp' => ''
         ]);
 
         $user->assignRole('jurnalis');

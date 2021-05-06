@@ -36,9 +36,9 @@
                                     {{ $k->kategories }}
                                 </option>
                             @empty
-                                <option value=""> </option>
+                                <option value="">-</option>
                             @endforelse
-                            <option value=""> </option>
+                            <option value="">-</option>
                         </select>
 
                     </div>

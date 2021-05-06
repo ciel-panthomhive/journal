@@ -55,6 +55,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'jk' => ['required', 'string'],
+            'alamat' => ['required', 'string'],
+            'ktp' => ['required', 'file', 'mimes:jpeg,png,jpg,gif,svg']
         ]);
     }
 
@@ -66,11 +69,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $file_upload = $data['ktp'];
+
+        $fileName = time() . '.' . $file_upload->getClientOriginalExtension();
+
+        $file_upload->move(public_path('uploads'), $fileName);
+
         return $user = User::create([
             'foto' => '',
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'jk' => $data['jk'],
+            'alamat' => $data['alamat'],
+            'ktp' => $fileName
         ])->assignRole('jurnalis');
     }
 }
