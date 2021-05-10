@@ -40,8 +40,8 @@ class WishlistController extends Controller
         $users = User::get()->take(5);
 
         // video youtube
-        $seconds = 12 * 60 * 60; // half day
-        $youtube_cache = Cache::remember('youtube-cache', $seconds, function () {
+        $seconds = 3 * 60 * 60; // each 3 hours
+        $youtube_cache = Cache::remember('youtube-vid', $seconds, function () {
             $queryParams = [
                 'channelId' => 'UCsyREEwjN2Ohn41pLwreqyA',
                 'maxResults' => 20,
@@ -54,9 +54,11 @@ class WishlistController extends Controller
             }
             $request = json_decode(file_get_contents($apiUrl));
             $youtube = collect($request->items);
-
             return $youtube;
         });
+        foreach($youtube_cache as $yutub){
+            $check = Video::where
+        }
         dd($youtube_cache); // aku ngetest dulu ya
         // dd($kategori);
         return view('start', [
