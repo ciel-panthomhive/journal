@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Models\Kategori;
 use App\Models\Subkategori;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
 
 class WishlistController extends Controller
@@ -43,7 +44,7 @@ class WishlistController extends Controller
         $youtube_cache = Cache::remember('youtube-cache', $seconds, function () {
             $queryParams = [
                 'channelId' => 'UCsyREEwjN2Ohn41pLwreqyA',
-                'maxResults' => 6,
+                'maxResults' => 20,
                 'order' => 'date',
                 'key' => 'AIzaSyBcLi2lzsRLbhTL8a0qxkw8HwEGm8zjxIE'
             ];
@@ -53,8 +54,10 @@ class WishlistController extends Controller
             }
             $request = json_decode(file_get_contents($apiUrl));
             $youtube = collect($request->items);
+
             return $youtube;
         });
+        dd($youtube_cache); // aku ngetest dulu ya
         // dd($kategori);
         return view('start', [
             'art' => $art,

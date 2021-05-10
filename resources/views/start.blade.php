@@ -1,6 +1,8 @@
 @extends('layouts.wishlist')
 @section('content')
     {{-- {{ dd($artie) }} --}}
+    {{-- @dd($youtube) --}}
+
     <div class="container-fluid">
         <div id="carouselId" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

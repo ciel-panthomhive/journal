@@ -61,6 +61,7 @@ Route::get('/publish', 'App\Http\Controllers\DashboardController@publish')->name
 Route::get('/myartikel', 'App\Http\Controllers\DashboardController@myartikel')->name('myartikel');
 Route::get('/myartikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
 Route::get('/publish-jurnalis', 'App\Http\Controllers\DashboardController@publishJurnalis')->name('publish.jurnalis');
+Route::get('/video', 'App\Http\Controllers\DashboardController@video')->name('video');
 
 //artikel redaktur
 Route::post('/artikel/newPublish', 'App\Http\Controllers\ArtikelRedakturController@newPublish')->name('artikelredaktur.new');

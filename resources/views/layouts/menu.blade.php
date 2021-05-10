@@ -23,9 +23,9 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ route('myartikel') }}">{{ __('My Artikel') }}</a>
 </li>
-{{-- <li class="nav-item">
-    <a class="nav-link" href="{{ route('headline') }}">{{ __('Headline') }}</a>
-</li> --}}
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('video') }}">{{ __('Video') }}</a>
+</li>
 @endrole
 
 @role('jurnalis')
