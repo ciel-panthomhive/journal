@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Artikelheadline;
 use App\Models\Artikelstatus;
 use App\Models\Artikelsubkategori;
 use Illuminate\Http\Request;
@@ -49,7 +50,12 @@ class ArtikelJurnalisController extends Controller
             'id_status' => 1,
         ]);
 
-        if ($artikel && $artikelsubkategori && $artikelstatus) {
+        $artikelheadline = Artikelheadline::create([
+            'id_artikel' => $artikel->id,
+            'id_headline' => 2
+        ]);
+
+        if ($artikel && $artikelsubkategori && $artikelstatus && $artikelheadline) {
             return redirect()->route('home')->with(['success' => 'Success']);
         } else {
             return redirect()->route('home')->with(['error' => 'Failed']);
@@ -95,7 +101,12 @@ class ArtikelJurnalisController extends Controller
             'id_status' => 3,
         ]);
 
-        if ($artikel && $artikelsubkategori && $artikelstatus) {
+        $artikelheadline = Artikelheadline::create([
+            'id_artikel' => $artikel->id,
+            'id_headline' => 2
+        ]);
+
+        if ($artikel && $artikelsubkategori && $artikelstatus && $artikelheadline) {
             return redirect()->route('home')->with(['success' => 'Success']);
         } else {
             return redirect()->route('home')->with(['error' => 'Failed']);
@@ -148,6 +159,11 @@ class ArtikelJurnalisController extends Controller
             ->where('id_artikel', $id)->first();
         $artikelstatus->id_artikel = $artikel->id;
         $artikelstatus->id_status = 1;
+
+        $artikelheadline = Artikelheadline::with(['headline'])
+            ->where('id_artikel', $id)->first();
+        $artikelheadline->id_artikel = $artikel->id;
+        $artikelheadline->id_headline = 2;
 
         $artikel->save();
         $artikelsubkategori->save();
@@ -207,11 +223,16 @@ class ArtikelJurnalisController extends Controller
         $artikelstatus->id_artikel = $artikel->id;
         $artikelstatus->id_status = 3;
 
+        $artikelheadline = Artikelheadline::with(['headline'])
+            ->where('id_artikel', $id)->first();
+        $artikelheadline->id_artikel = $artikel->id;
+        $artikelheadline->id_headline = 2;
+
         $artikel->save();
         $artikelsubkategori->save();
         $artikelstatus->save();
 
-        if ($artikel && $artikelsubkategori && $artikelstatus) {
+        if ($artikel && $artikelsubkategori && $artikelstatus && $artikelheadline) {
             return redirect()->route('home')->with(['success' => 'Success']);
         } else {
             return redirect()->route('home')->with(['error' => 'Failed']);

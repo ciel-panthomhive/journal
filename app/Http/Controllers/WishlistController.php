@@ -18,14 +18,19 @@ class WishlistController extends Controller
     public function index()
     {
         // artikel headline
-        $artikelstatus = Artikelstatus::with(['artikel'])
-            ->where('id_status', 2)->latest('id')->limit(3)->get();
+        $art = Artikel::with(['artikelstatus', 'artikelheadline'])
+            ->join('artikelstatus', 'artikelstatus.id_artikel', '=', 'artikel.id')
+            ->where('id_status', 2)
+            ->join('artikelheadline', 'artikelheadline.id_artikel', '=', 'artikel.id')
+            ->where('id_headline', 1)->latest('artikel.id')->get();
 
         // list artikel
-        $artikel = Artikel::with(['artikelstatus', 'artikelsubkategori.subkategori'])
-            ->join('artikelstatus', 'id_artikel', '=', 'artikel.id')
-            ->where('id_status', 2)->latest('artikel.id')
-            ->skip(3)->take(4)->get();
+        $artikel = Artikel::with(['artikelstatus', 'artikelheadline'])
+            ->join('artikelstatus', 'artikelstatus.id_artikel', '=', 'artikel.id')
+            ->where('id_status', 2, 'AND')
+            ->join('artikelheadline', 'artikelheadline.id_artikel', '=', 'artikel.id')
+            ->where('id_headline', 2)->latest('artikel.id')
+            ->take(4)->get();
 
         // kategori
         $subkategori = Subkategori::all();
@@ -52,7 +57,7 @@ class WishlistController extends Controller
         });
         // dd($kategori);
         return view('start', [
-            'artikelstatus' => $artikelstatus,
+            'art' => $art,
             'artikel' => $artikel,
             'subkategori' => $subkategori,
             'users' => $users,

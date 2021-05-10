@@ -39,6 +39,19 @@
                             @endif
                         </div> --}}
 
+                        @role('redaktur')
+                        <div class="col">
+                            <label>Jenis</label>
+                            <select class="form-control select2-single" name="id_headline">
+                                @forelse ($headline as $h)
+                                    <option value="{{ $h->id }}">{{ $h->highlight }} </option>
+                                @empty
+                                    <option value=""> </option>
+                                @endforelse
+                            </select>
+                        </div>
+                        @endrole
+
                         <div class="col">
                             <label>Kategori</label>
                             <select class="form-control select2-single" name="id_subkategori">

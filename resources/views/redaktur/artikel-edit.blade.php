@@ -35,8 +35,22 @@
                     {{ method_field('PUT') }}
 
                     <div class="row">
+                        {{-- @dd($artikelheadline) --}}
 
-
+                        @role('redaktur')
+                        <div class="col">
+                            <label>Jenis</label>
+                            <select class="form-control select2-single" name="id_headline">
+                                @forelse($headline as $h)
+                                    <option value="{{ $h->id }}"
+                                        {{ $h->id == $artikelheadline->id_headline ? 'selected' : '' }}>
+                                        {{ $h->highlight }}</option>
+                                @empty
+                                    <option value=""> </option>
+                                @endforelse
+                            </select>
+                        </div>
+                        @endrole
 
                         <div class="col">
                             <label>Kategori</label>

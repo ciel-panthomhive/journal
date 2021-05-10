@@ -5,7 +5,7 @@
                 <img class="mb-4" src="{{ asset('assets/images/Wishlist Logo2.png') }}" width="200">
                 <p class="text-white">Support by:</p>
                 <a href="https://www.dinamika.ac.id" target="_blank">
-                    <img src="{{ asset('assets/images/undika.png') }}" />
+                    <img src="{{ asset('assets/images/Undika Logo.png') }}" style="width: 150px" />
                 </a>
             </div>
             <div class="col m-3" style="display: grid;">

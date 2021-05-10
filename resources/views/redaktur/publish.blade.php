@@ -17,6 +17,7 @@
                             <th>Tanggal Publish</th>
                             <th>Penulis</th>
                             <th>Keterangan</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,10 @@
                                 <td>@isset($a->artikel)
                                         {{ $a->artikel->keterangan }}
                                     @endisset</td>
+                                <td>
+                                    <a href="{{ route('artikelredaktur.edit', ['id' => $a->id]) }}"
+                                        class="btn btn-warning">Edit</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

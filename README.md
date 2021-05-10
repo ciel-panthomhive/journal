@@ -36,5 +36,6 @@
     7. Run `php artisan db:seed --class=StatusSeeder`
     8. Run `php artisan db:seed --class=RubikSeeder` //optional
     9. Run `php artisan db:seed --class=KategoriSeeder` //optional
-    10. Run `php artisan serve`
-    11. Open the url
+    10. Run `php artisan db:seed --class=HeadlineSeeder`
+    11. Run `php artisan serve`
+    12. Open the url

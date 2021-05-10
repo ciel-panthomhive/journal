@@ -38,7 +38,7 @@ class DashboardController extends Controller
             ->where('id_user', $auth, 'AND')
             ->where('id_status', 2)->latest('artikelstatus.updated_at')->get();
 
-        return view('redaktur.publish', ['artikelstatus' => $artikelstatus]);
+        return view('jurnalis.publish', ['artikelstatus' => $artikelstatus]);
     }
 
     public function halaman($id)

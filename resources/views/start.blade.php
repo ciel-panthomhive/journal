@@ -10,19 +10,19 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 {{-- {{ dd($artikelstatus) }} --}}
-                @foreach ($artikelstatus as $a)
+                @foreach ($art as $a)
                     {{-- <a href="{{ route('artikel-wishlist', $a->artikel->id) }}" --}}
                     {{-- style="text-decoration: none; color: black"> --}}
                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                         <div class="d-flex">
-                            <img class="" src="{{ asset('uploads/' . $a->artikel->thumb) }}"
+                            <img class="" src="{{ asset('uploads/' . $a->thumb) }}"
                                 style="height: 25rem; width: 60%; object-fit: cover" alt="First slide">
                             <div class="card bg-purple" style="width: 40%">
                                 <div class="card-body">
-                                    <a href="{{ route('artikel-wishlist', $a->artikel->id) }}"
+                                    <a href="{{ route('artikel-wishlist', $a->id) }}"
                                         style="text-decoration: none; color: black">
-                                        <h4>{{ $a->artikel->judul }}</h4>
-                                        <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
+                                        <h4>{{ $a->judul }}</h4>
+                                        <p>{!! substr(strip_tags($a->isi), 0, 50) !!}..</p>
                                     </a>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <small
                                     class="badge rounded-pill px-4 py-2 mb-3 bg-pink text-white">{{ $artk->artikelsubkategori[0]->subkategori->subkategories }}</small>
                                 <h5 class="card-title">{{ $artk->judul }}</h5>
-                                <p>{!! substr(strip_tags($a->artikel->isi), 0, 50) !!}..</p>
+                                <p>{!! substr(strip_tags($artk->isi), 0, 50) !!}..</p>
                             </div>
                         </div>
                     </a>

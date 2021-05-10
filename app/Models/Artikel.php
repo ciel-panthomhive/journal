@@ -27,4 +27,9 @@ class Artikel extends Model
     {
         return $this->hasMany(Artikelsubkategori::class, 'id_artikel', 'id');
     }
+
+    public function artikelheadline()
+    {
+        return $this->hasMany(Artikelheadline::class, 'id_artikel', 'id');
+    }
 }
