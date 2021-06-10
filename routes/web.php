@@ -32,6 +32,9 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::get('/menu/{id}', 'App\Http\Controllers\DashboardController@halaman')->name('halaman');
 Route::get('/hal/{id}', 'App\Http\Controllers\DashboardController@halaman_sub')->name('halaman_baru');
 
+// auth routes
+Route::group(['middleware' => ['web', 'auth']], function () {
+
 //admin-kategori
 Route::get('/kategori', 'App\Http\Controllers\KategoriController@index')->name('kategori');
 Route::get('/kategori/add', 'App\Http\Controllers\KategoriController@add')->name('kategori.add');
@@ -61,7 +64,8 @@ Route::get('/publish', 'App\Http\Controllers\DashboardController@publish')->name
 Route::get('/myartikel', 'App\Http\Controllers\DashboardController@myartikel')->name('myartikel');
 Route::get('/myartikel/add', 'App\Http\Controllers\ArtikelRedakturController@add')->name('artikelredaktur.add');
 Route::get('/publish-jurnalis', 'App\Http\Controllers\DashboardController@publishJurnalis')->name('publish.jurnalis');
-Route::get('/video', 'App\Http\Controllers\DashboardController@video')->name('video');
+Route::get('/video', 'App\Http\Controllers\VideoController@index')->name('video');
+Route::get('/fetch-youtube', 'App\Http\Controllers\VideoController@fetch_data')->name('fetch-youtube');
 
 //artikel redaktur
 Route::post('/artikel/newPublish', 'App\Http\Controllers\ArtikelRedakturController@newPublish')->name('artikelredaktur.new');
@@ -89,3 +93,5 @@ Route::put('/verifikasi/update/{id}', 'App\Http\Controllers\RedakturController@u
 Route::get('/tolak/{id}', 'App\Http\Controllers\RedakturController@tolak')->name('tolak');
 Route::put('/alasan/{id}', 'App\Http\Controllers\RedakturController@alasan')->name('alasan');
 Route::put('/publish/{id}', 'App\Http\Controllers\RedakturController@publish')->name('verifikasi.publish');
+
+});

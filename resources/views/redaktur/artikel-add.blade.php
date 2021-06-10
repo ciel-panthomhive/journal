@@ -98,32 +98,35 @@
                             @endif
                         </div>
                     </div>
-            </div>
 
-            <div class="col">
-                <label>Isi</label>
-                <textarea id="isi" name="isi" class="" placeholder="Isi"></textarea>
-
-                @if ($errors->has('isi'))
-                    <div class="text-danger">
-                        {{ $errors->first('isi') }}
+                    <div class="row">
+                        <div class="col">
+                            <label>Isi</label>
+                            <textarea id="isi" name="isi" class="" placeholder="Isi"></textarea>
+            
+                            @if ($errors->has('isi'))
+                                <div class="text-danger">
+                                    {{ $errors->first('isi') }}
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                @endif
+        
+                    <div class="form-group mt-3">
+                        @role('redaktur')
+                        <button type="submit" style="" class="btn btn-warning">Draft</button>
+                        <button formaction="{{ route('artikelredaktur.new') }}" type="submit" style="float:Right"
+                            class="btn btn-success">Kirim</button>
+                        @endrole
+                        @role('jurnalis')
+                        <button formaction="{{ route('artikeljurnalis.newDraft') }}" type="submit" style=""
+                            class="btn btn-warning">Draft</button>
+                        <button formaction="{{ route('artikeljurnalis.new') }}" type="submit" style="float:Right"
+                            class="btn btn-success">Kirim</button>
+                        @endrole
+                    </div>
             </div>
 
-            <div class="form-group">
-                @role('redaktur')
-                <button type="submit" style="" class="btn btn-warning">Draft</button>
-                <button formaction="{{ route('artikelredaktur.new') }}" type="submit" style="float:Right"
-                    class="btn btn-success">Kirim</button>
-                @endrole
-                @role('jurnalis')
-                <button formaction="{{ route('artikeljurnalis.newDraft') }}" type="submit" style=""
-                    class="btn btn-warning">Draft</button>
-                <button formaction="{{ route('artikeljurnalis.new') }}" type="submit" style="float:Right"
-                    class="btn btn-success">Kirim</button>
-                @endrole
-            </div>
 
             </form>
 

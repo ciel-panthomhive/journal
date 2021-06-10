@@ -37,14 +37,15 @@ class WishlistController extends Controller
         $subkategori = Subkategori::all();
 
         // user
-        $users = User::get()->take(5);
+        $users = User::take(5)->get();
 
         // video youtube
-        $seconds = 3 * 60 * 60; // each 3 hours
-        $youtube_cache = Cache::remember('youtube-vid', $seconds, function () {
+        /* $seconds = 3 * 60 * 60; // each 3 hours
+        $youtube_cache = Cache::remember('youtube-video', $seconds, function () {
             $queryParams = [
                 'channelId' => 'UCsyREEwjN2Ohn41pLwreqyA',
-                'maxResults' => 20,
+                // 'maxResults' => 20,
+                'maxResults' => 6,
                 'order' => 'date',
                 'key' => 'AIzaSyBcLi2lzsRLbhTL8a0qxkw8HwEGm8zjxIE'
             ];
@@ -55,18 +56,15 @@ class WishlistController extends Controller
             $request = json_decode(file_get_contents($apiUrl));
             $youtube = collect($request->items);
             return $youtube;
-        });
-        foreach($youtube_cache as $yutub){
-            $check = Video::where
-        }
-        dd($youtube_cache); // aku ngetest dulu ya
-        // dd($kategori);
+        }); */
+        $video = Video::take(6)->get();
+        
         return view('start', [
             'art' => $art,
             'artikel' => $artikel,
             'subkategori' => $subkategori,
             'users' => $users,
-            'youtube' => $youtube_cache,
+            'youtube' => $video,
         ]);
     }
 
