@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class=" form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -47,9 +47,12 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="jk" type="text" class="form-control @error('jk') is-invalid @enderror"
-                                        name="jk" value="{{ old('jk') }}" required autocomplete="jk">
-
+                                    {{-- <input id="jk" type="text" class="form-control @error('jk') is-invalid @enderror"
+                                        name="jk" value="{{ old('jk') }}" required autocomplete="jk"> --}}
+                                    <select id="jk" type="text" class="form-control @error('jk') is-invalid @enderror" name="jk" required>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
                                     @error('jk')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
